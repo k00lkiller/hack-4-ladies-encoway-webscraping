@@ -16,7 +16,8 @@ Relevante Informationen sind:
 - Rechtsform
 - Anschrift
 - Geschäftszweck
-- Vertretungsberechtigte
+- Vertretungsberechtigte  
+
 Wir möchten also Suchfaktoren definieren und diese per Applikation in eine Date oder Datenbank schreiben lassen.
 Nehmt fertige Tools oder probiert euch selber aus.
 
@@ -43,4 +44,4 @@ We would like to define search factors and have them application into a file or 
 
 [Context](https://www.golem.de/news/scraping-des-handelsregisters-wir-machen-das-ja-nur-aus-notwehr-2208-167344.html)
 
-[Source] (https://www.handelsregister.de/rp_web/ergebnisse.xhtml)
+[Source](https://www.handelsregister.de/rp_web/ergebnisse.xhtml)
