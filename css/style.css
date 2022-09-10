@@ -1,0 +1,9 @@
+body {
+    background-color: aliceblue;
+    color:darkblue;
+}
+
+
+input[type="submit"]{
+    margin: 10px 0;
+}
