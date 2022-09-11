@@ -1,0 +1,26 @@
+{
+  "name": "hack-4-ladies-encoway-webscraping",
+  "version": "1.0.0",
+  "description": "Sei die Macht des Webscraping mit dir!",
+  "main": "/js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k00lkiller/hack-4-ladies-encoway-webscraping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k00lkiller/hack-4-ladies-encoway-webscraping/issues"
+  },
+  "homepage": "https://github.com/k00lkiller/hack-4-ladies-encoway-webscraping#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "chromedriver": "^105.0.0",
+    "geckodriver": "^3.0.2",
+    "node-fetch": "^3.2.10",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
