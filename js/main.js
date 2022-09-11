@@ -1,53 +1,73 @@
- var links = document.querySelectorAll('[id*="ergebnissForm:selectedSuchErgebnisFormTable:"] [id$=":6:fade"]')
- let localStorage
-//console.log(links)
-var arraySet = (function() {
+const links = document.querySelectorAll('[id*="ergebnissForm:selectedSuchErgebnisFormTable:"] [id$=":6:fade"]')
+console.log(links)
+
+ window.addEventListener('load', (event) => {
+ 
+    downloadXML()
+    sessionStorage.clear();
+  })
+
+  var arraySet = (function() {
     var executed = false;
     return function() {
         if (!executed) {
             executed = true;
-            localStorage['arrayCounter'] = links.length - 1
-            console.log('Set Storage'+  localStorage['arrayCounter'] )
+            var iteration = links.length - 1
+            sessionStorage.setItem('arrayCounter', iteration)
+            // console.log(sessionStorage['arrayCounter'] )
         }
     };
 })();
- window.addEventListener('load', (event) => {
-
-    console.log('page is fully loaded')
-    arraySet()
-    downloadXML()
-  });
-
-//  window.addEventListener('DOMContentLoaded', (event) => {
-//     console.log('DOM fully loaded and parsed');
-//     downloadXML()
-// });
 
  function downloadXML() {
-    if (document.title.includes('Notice on costs')){
-       
-            console.log(document.title)
-            var downloadBtn = document.getElementById( 'form:kostenpflichtigabrufen' )
-            downloadBtn.click()
-            setTimeout(function(){
-                localStorage.setItem('arrayCounter') -= 1
-                console.log('Update Storage' + localStorage['arrayCounter'] )  
-            }, 2000)
-            window.history.back()    
 
-    } else if (document.title.includes('Search Result')) {
-        // links.forEach((element) => {
-        //      console.log(document.title)
-        //       element.click()
-        //     })
-            for (var i = localStorage.getItem('arrayCounter'); i >=0; i--) {
-               console.log(document.title)
-               links[i].click()
-            }
+    if (document.title.includes('Search Result')) {
+        arraySet()
+        for (var i = sessionStorage.getItem('arrayCounter'); i >=0; i--) {
+           console.log('clicked download')
+           //links[i].click().then(downloadAndGoBack())
+
+           var goToDownload = new Promise((resolve, reject) => {
+            setTimeout(() => {
+              links[i].click()  
+              resolve("success")
+            }, 300)
+          })
+          
+          goToDownload.then(downloadAndGoBack()).catch((error) => console.error(error))
+
         }
 
     }
+    
+    // else if (document.title.includes('Notice on costs')){    
+    //     downloadAndGoBack()
+    // }
+
+ }
 
 
+function downloadAndGoBack ()
+{
+    var downloadBtn = document.getElementById( 'form:kostenpflichtigabrufen' )
+    downloadBtn.click()
+    setTimeout( function ()
+    {
+        var oldStorage = sessionStorage.getItem( 'arrayCounter' )
+        var newStorage = oldStorage - 1
+        sessionStorage.setItem( 'arrayCounter', newStorage )
+        console.log( 'Update Storage' + newStorage )
+    }, 50000 )
+    setTimeout( window.history.back(), 50000 )
+}
 
-
+// function successCallback(result) {
+//     console.log(`Audio file ready at URL: ${result}`);
+//   }
+  
+//   function failureCallback(error) {
+//     console.error(`Error generating audio file: ${error}`);
+//   }
+  
+//   clickAsync(links, successCallback, failureCallback);
+  
